@@ -27,7 +27,6 @@ define([
         buildMap = [],
         filecode = "w+",
         templateExtension = "hbs",
-        customNameExtension = "@hbs",
         devStyleDirectory = "/styles/",
         buildStyleDirectory = "/demo-build/styles/",
         helperDirectory = "template/helpers/",
@@ -121,8 +120,8 @@ define([
 
         write: function (pluginName, name, write) {
 
-            if ( (name + customNameExtension ) in buildMap) {
-                var text = buildMap[name + customNameExtension];
+            if (name in buildMap) {
+                var text = buildMap[name];
                 write.asModule(pluginName + "!" + name, text);
             }
         },
@@ -132,8 +131,7 @@ define([
         load: function (name, parentRequire, load, config) {
           //>>excludeStart('excludeHbs', pragmas.excludeHbs)
 
-            var compiledName = name + customNameExtension,
-                disableI18n = (config.hbs && config.hbs.disableI18n),
+            var disableI18n = (config.hbs && config.hbs.disableI18n),
                 partialDeps = [];
 
             function recursiveNodeSearch( statements, res ) {
@@ -390,7 +388,7 @@ define([
 
                   //Hold on to the transformed text if a build.
                   if (config.isBuild) {
-                      buildMap[compiledName] = text;
+                      buildMap[name] = text;
                   }
 
                   //IE with conditional comments on cannot handle the
@@ -409,25 +407,11 @@ define([
 
                   if ( !config.isBuild ) {
                     require( deps, function (){
-                      load.fromText(compiledName, text);
-
-                      //Give result to load. Need to wait until the module
-                      //is fully parse, which will happen after this
-                      //execution.
-                      parentRequire([compiledName], function (value) {
-                        load(value);
-                      });
+                      load.fromText(text);
                     });
                   }
                   else {
-                    load.fromText(compiledName, text);
-
-                    //Give result to load. Need to wait until the module
-                    //is fully parse, which will happen after this
-                    //execution.
-                    parentRequire([compiledName], function (value) {
-                      load(value);
-                    });
+                    load.fromText(text);
                   }
               });
             }
