@@ -8,7 +8,7 @@ Features
 * Full AMD support
 * Compiled Handlebars templates
 * CDN loading (Google for jQuery, [cdnjs for others](http://cdnjs.com/)) with local fallback
-* Uses [The Semantic Grid System](http://semantic.gs/)
+* Uses [The Semantic Grid System](http://semantic.gs/) and [LESS Elements](http://lesselements.com/)
 
 Libraries
 ---------
