@@ -81,11 +81,9 @@ require.config({
 });
 
 require(["jquery", "underscore", "backbone", 'hbs!templates/main'], function ($, _, Backbone, main_template) {
-    alert('Everything loaded just fine!');
-
     var main = $('#main');
     var context = {
-        world: 'je moeder'
+        world: 'world'
     };
 
     main.html(main_template(context));

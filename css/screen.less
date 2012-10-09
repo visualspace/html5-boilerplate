@@ -1,0 +1,21 @@
+@import 'reset.less';
+@import 'grid.less';
+
+/*
+The Semantic Grid defaults to a 12 column, 960 pixel grid system. Customize the columns and gutters by overriding these three variables (after the grid.less import has been declared):
+@column-width: 60;
+@gutter-width: 20;
+@columns: 12;
+*/
+
+/*
+To use a fluid (percentage-based) grid rather than a fixed pixels, simply override one additional variable:
+@total-width: 100%;
+*/
+
+article {
+   .column(9);
+}
+section {
+   .column(3);
+}
