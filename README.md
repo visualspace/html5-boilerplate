@@ -1,7 +1,7 @@
 HTML5 Boilerplate
 =================
 
-Experiment at defining an utterly minimal HTML5 boilerplate.
+A collection of basic files we use to kickstart HTML5 projects.
 
 Features
 --------
